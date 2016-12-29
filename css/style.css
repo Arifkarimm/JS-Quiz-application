@@ -6,6 +6,37 @@
 header {
   font: bold 24px/120% Arial, Helvetica, sans-serif;
   background: #333;
-  color: #c00;
+  color: #518fe0;
   text-transform: uppercase;
+}
+h1.textstyle {
+  padding-bottom: 19px;
+  padding-top: 24px;
+  text-align: center;
+}
+p.score{
+  float: right;
+  color: tomato;
+}
+section p {
+  font: bold 24px/150% Arial, Helvetica, sans-serif;
+  background: #ccc;
+  border: #999 2px solid;
+  color: #666;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  width: 600px;
+}
+
+.right {
+  background: #0c0;
+  border: #090 2px solid;
+  color: #060;
+}
+
+.wrong {
+  background: #c00;
+  border: #900 2px solid;
+  color: #600;
 }

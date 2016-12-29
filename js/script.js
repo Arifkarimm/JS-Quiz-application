@@ -1,24 +1,40 @@
-var quiz = {
+var quizQuistions = {
 
     name:"Super Hero Name Quiz",
     description:"How many super heroes can you name?",
     headline:"What is the real name of ",
     mainquestions: [
-        { "question": "Superman", "answer": "Clarke Kent" },
-        { "question": "Batman", "answer": "Bruce Wayne" },
-        { "question": "Wonder Woman", "answer": "Dianna Prince" }
+        { "question": "Superman", "answer": "Clarke" },
+        { "question": "Batman", "answer": "Bruce" },
+        { "question": "Wonder Woman", "answer": "Dianna" }
       ]
 }
 
-var score = 0;
+// dom element grab
+var $finalScore = document.getElementById("score");
+var $ListOfquestions = document.getElementById('question');
+var $ListOfFeedback = document.getElementById('feedback')
 
-play(quiz);
+
+function updateDom(element, content, klass){
+  var p = element.firstChild || document.createElement("p");
+  p.textContent = content;
+  element.appendChild(p);
+  if(klass){
+    p.className = klass;
+  }
+
+}
+
+play(quizQuistions);
 
 
-function play(quiz){
+function play(quizQuistions){
+  var score = 0;
+  updateDom($finalScore, score);
 
-  for(var i=0; i<quiz.mainquestions.length; i++) {
-    var question = quiz.mainquestions[i].question;
+  for(var i=0; i<quizQuistions.mainquestions.length; i++) {
+    var question = quizQuistions.mainquestions[i].question;
     var answer = ask(question);
     check(answer);
   }
@@ -26,19 +42,21 @@ function play(quiz){
   gameOver();
 
   function ask(question) {
-    return prompt(quiz.headline + question);
+    updateDom($ListOfquestions, quizQuistions.headline + question )
+    return prompt("Enter Your Desire Answer");
   }
 
   function check(answer) {
-    if(answer === quiz.mainquestions[i].answer){
-      alert("Answer is Correct!");
+    if(answer === quizQuistions.mainquestions[i].answer){
+      updateDom($ListOfFeedback, "Answer Correct", "right");
       score++;
+      updateDom($finalScore, score);
     } else {
-      alert("Answer is Wrong!");
+      updateDom($ListOfFeedback, "Answer Wrong", "wrong");
     }
   }
 
   function gameOver(){
-    alert("Game Over, you scored " + score + " points");
+      updateDom($ListOfquestions, "Gameover, Your scored is " +score+ " points");
   }
 }
