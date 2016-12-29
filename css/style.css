@@ -40,3 +40,11 @@ section p {
   border: #900 2px solid;
   color: #600;
 }
+
+button {
+  font: bold 24px/150% Arial, Helvetica, sans-serif;
+  display: block;
+  width: 300px;
+  padding: 10px;
+  margin: 10px auto;
+}

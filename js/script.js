@@ -14,6 +14,8 @@ var quizQuistions = {
 var $finalScore = document.getElementById("score");
 var $ListOfquestions = document.getElementById('question');
 var $ListOfFeedback = document.getElementById('feedback')
+var $startButton = document.getElementById('button');
+
 
 
 function updateDom(element, content, klass){
@@ -26,7 +28,9 @@ function updateDom(element, content, klass){
 
 }
 
-play(quizQuistions);
+$startButton.addEventListener('click', function (){
+  play(quizQuistions);
+}, false);
 
 
 function play(quizQuistions){
