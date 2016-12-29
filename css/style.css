@@ -2,7 +2,9 @@
   margin: 0;
   padding: 0;
 }
-
+body{
+  text-align: center;
+}
 header {
   font: bold 24px/120% Arial, Helvetica, sans-serif;
   background: #333;
@@ -25,7 +27,7 @@ section p {
   color: #666;
   text-align: center;
   padding: 10px;
-  margin: 10px;
+  margin: 10px auto;
   width: 600px;
 }
 
@@ -41,10 +43,18 @@ section p {
   color: #600;
 }
 
-button {
+#button {
   font: bold 24px/150% Arial, Helvetica, sans-serif;
   display: block;
   width: 300px;
   padding: 10px;
   margin: 10px auto;
+}
+input, button {
+  font: bold 24px/150% Arial, Helvetica, sans-serif;
+  display: block;
+  width: 600px;
+  padding: 10px;
+  margin: 10px auto;
+
 }

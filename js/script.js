@@ -15,6 +15,7 @@ var $finalScore = document.getElementById("score");
 var $ListOfquestions = document.getElementById('question');
 var $ListOfFeedback = document.getElementById('feedback')
 var $startButton = document.getElementById('button');
+var $mainForm = document.getElementById('mainform');
 
 
 
@@ -28,26 +29,52 @@ function updateDom(element, content, klass){
 
 }
 
+//hide function
+function hide(element){
+  element.style.display = "none";
+}
+
+//hide show button
+function show(element){
+  element.style.display = "block";
+}
+
+
+// event listener for click button
 $startButton.addEventListener('click', function (){
   play(quizQuistions);
 }, false);
+
+// Initial hide main form
+hide($mainForm);
 
 
 function play(quizQuistions){
   var score = 0;
   updateDom($finalScore, score);
 
-  for(var i=0; i<quizQuistions.mainquestions.length; i++) {
-    var question = quizQuistions.mainquestions[i].question;
-    var answer = ask(question);
-    check(answer);
-  }
+  //hide button but show form
+  hide($startButton);
+  show($mainForm);
 
-  gameOver();
+  // main form event listener
+  $mainForm.addEventListener('submit', function(event){
+    event.preventDefault();
+    check($mainForm[0].value);
+  }, false);
+
+  var i = 0;
+  chooseQuestion();
+
+  function chooseQuestion(){
+    var question = quizQuistions.mainquestions[i].question;
+    ask(question);
+  }
 
   function ask(question) {
     updateDom($ListOfquestions, quizQuistions.headline + question )
-    return prompt("Enter Your Desire Answer");
+    $mainForm[0].value = "";
+    $mainForm[0].focus();
   }
 
   function check(answer) {
@@ -58,9 +85,18 @@ function play(quizQuistions){
     } else {
       updateDom($ListOfFeedback, "Answer Wrong", "wrong");
     }
+    // check if any quistion available
+    i++
+    if(i === quizQuistions.mainquestions.length){
+      finalGameOver()
+    } else {
+      chooseQuestion();
+    }
   }
-
-  function gameOver(){
+  // game over
+  function finalGameOver(){
       updateDom($ListOfquestions, "Gameover, Your scored is " +score+ " points");
+      hide($mainForm);
+      show($startButton);
   }
 }
