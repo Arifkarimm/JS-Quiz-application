@@ -58,3 +58,8 @@ input, button {
   margin: 10px auto;
 
 }
+
+#clocktimer{
+  text-align: center;
+  color: tomato;
+}

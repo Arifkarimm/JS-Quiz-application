@@ -16,6 +16,7 @@ var $ListOfquestions = document.getElementById('question');
 var $ListOfFeedback = document.getElementById('feedback')
 var $startButton = document.getElementById('button');
 var $mainForm = document.getElementById('mainform');
+var $clockTimer = document.getElementById('clocktimer');
 
 
 
@@ -52,6 +53,10 @@ hide($mainForm);
 function play(quizQuistions){
   var score = 0;
   updateDom($finalScore, score);
+  // initialize time and set up an interval that counts down every second
+  var time = 20;
+  updateDom($clockTimer, time);
+  var interval = window.setInterval(timeCoutdown, 1000)
 
   //hide button but show form
   hide($startButton);
@@ -93,9 +98,18 @@ function play(quizQuistions){
       chooseQuestion();
     }
   }
+  // time countdown and decrease the time
+  function timeCoutdown(){
+    time --;
+    updateDom($clockTimer, time);
+    if(time <= 0){
+      finalGameOver();
+    }
+  }
   // game over
   function finalGameOver(){
       updateDom($ListOfquestions, "Gameover, Your scored is " +score+ " points");
+      window.clearInterval(interval);
       hide($mainForm);
       show($startButton);
   }
